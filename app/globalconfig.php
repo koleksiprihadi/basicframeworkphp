@@ -4,7 +4,7 @@ $conf = new Config();
 // $db = new db($conf->get_dbhost(), $conf->get_dbuser(), $conf->get_dbpass(), $conf->get_dbname());
 
 // Session Login
-session_start();
+// session_start();
 
 // Cek Session Login
 function sessioncek() {

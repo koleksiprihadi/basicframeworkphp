@@ -286,8 +286,22 @@ class Config {
   public $dbname = 'Nama Database Anda';
   ...
 ```
-
-4. tambahkan code ```<?php sessioncek()?>``` disetiap page anda pada awal dokumen yang memerlukan authentikasi login seperti dibawah ini
+4. Aktifkan Fitur session
+untuk mengaktifkan session anda cukup menghilangkan tanda comment pada ```session_start()``` yang ada pada direktori ```app/globalconfig.php```
+```php
+...
+// Session Login
+// session_start();
+...
+```
+menjadi
+```php
+...
+// Session Login
+session_start();
+...
+```
+5. tambahkan code ```<?php sessioncek()?>``` disetiap page anda pada awal dokumen yang memerlukan authentikasi login seperti dibawah ini
 ```php
 1 <?php sessioncek();?>
 2 <!DOCTYPE html>
