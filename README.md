@@ -127,20 +127,13 @@ Setelah selesai membuat tampilan silahkan buat route pada file route.php yang te
 berikut syntax pembuatan route
 
 ```php
-$route->add('/',$dirv."tampilananda.php");
-```
-atau
-```php
-$route->add('/',"views/tampilananda.php");
+$route->addView('/tampilananda',"tampilananda.php");
 ```
 untuk membuat route untuk proses atau file didalam folder process syntaxnya seperti berikut
 ```php
-$route->add('/',$dirp."prosesanda.php");
+$route->addProcess('/prosesanda',"prosesanda.php");
 ```
-atau
-```php
-$route->add('/',"process/prosesanda.php");
-```
+
 
 ### Penggunaan MySQL
 Untuk Menggunakan mysql pertama anda harus mengedit dbhost, dbuser, dbpass, dbname pada file config.php pada direktori
@@ -238,22 +231,24 @@ hilangkan tanda comment pada kode route berikut
 ```php
 // Aktifkan route dibawah jika ingin menggunakan fitur login
 
-// $route->add('/login',$dirv.'pgLogin.php');
+// $route->addView('/login','pgLogin.php');
 
-// $route->add('/logout',$dirv.'pgLogout.php');
+// $route->addView('/logout','pgLogout.php');
 
-// $route->add('/auth/{aksi}',$dirp."prosesAuth.php");
+// $route->addProcess('/auth/{aksi}',"prosesAuth.php");
+
 
 ```
 menjadi 
 ```php
 // Aktifkan route dibawah jika ingin menggunakan fitur login
 
-$route->add('/login',$dirv.'pgLogin.php');
+$route->addView('/login','pgLogin.php');
 
-$route->add('/logout',$dirv.'pgLogout.php');
+$route->addView('/logout','pgLogout.php');
 
-$route->add('/auth/{aksi}',$dirp."prosesAuth.php");
+$route->addProcess('/auth/{aksi}',"prosesAuth.php");
+
 ```
 #### 2. Atur database MySQL anda
 1. buatlah table akun pada mysql anda seperti ini

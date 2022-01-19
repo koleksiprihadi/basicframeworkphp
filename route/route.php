@@ -3,29 +3,21 @@ include 'app/config.php';
 $conf = new Config();
 $route = new Route();
 
-// Views Loc
-$dirv = $conf->get_views();
-
-// Process Loc
-$dirp = $conf->get_process();
-
-
-
 // Mulai Tambahakan Route anda dari sini
 
 
-$route->add('/',$dirv."home.php");
+$route->addView('/',"home.php");
 
-$route->add("/user",$dirv."user.php");
+$route->addView("/user","user.php");
 
 
 // Aktifkan route dibawah jika ingin menggunakan fitur login
 
-// $route->add('/login',$dirv.'pgLogin.php');
+// $route->addView('/login','pgLogin.php');
 
-// $route->add('/logout',$dirv.'pgLogout.php');
+// $route->addView('/logout','pgLogout.php');
 
-// $route->add('/auth/{aksi}',$dirp."prosesAuth.php");
+// $route->addProcess('/auth/{aksi}',"prosesAuth.php");
 
 
 // Route Error

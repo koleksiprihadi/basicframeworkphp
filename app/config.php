@@ -5,14 +5,9 @@ class Config {
   public $dbuser = 'Username Database Anda';
   public $dbpass = 'Password Database ANda';
   public $dbname = 'Nama Database Anda';
-  public $locviews = "views/";
-  public $locprocess = "process/";
   public $locerrlogin ='/login';
   public $locsukseslogin = '/';
-  
-  function get_views() {
-    return $this->locviews;
-  }
+
   function get_dbhost() {
     return $this->dbhost;
   }
@@ -27,10 +22,6 @@ class Config {
   }
   function get_locerrlogin() {
     return $this->locerrlogin;
-  }
-
-  function get_process() {
-    return $this->locprocess;
   }
   function get_locsukseslogin() {
     return $this->locsukseslogin;

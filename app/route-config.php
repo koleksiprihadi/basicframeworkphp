@@ -2,10 +2,6 @@
 class Route {
 
     private function simpleRoute($file, $route){
-
-        //replacing first and last forward slashes
-        //$_REQUEST['uri'] will be empty if req uri is /
-
         if(!empty($_REQUEST['uri'])){
             $route = preg_replace("/(^\/)|(\/$)/","",$route);
             $reqUri =  preg_replace("/(^\/)|(\/$)/","",$_REQUEST['uri']);
@@ -23,8 +19,7 @@ class Route {
 
     }
 
-    function add($route,$file){
-
+    private function addRoute($route,$file){
         //will store all the parameters value in this array
         $params = [];
 
@@ -105,6 +100,17 @@ class Route {
 
         }
     }
+
+    function addView($route, $file){
+        $file = 'views/'. $file;
+        $this-> addRoute($route,$file);
+    }
+    function addProcess($route, $file){
+        $file = 'process/'. $file;
+        $this-> addRoute($route,$file);
+    }
+
+    
 
     function notFound($file){
         include($file);
