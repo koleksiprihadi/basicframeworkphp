@@ -76,12 +76,12 @@ Folder **views** untuk semua file tampilan anda dalam bentuk .php
 Folder **process** untuk semua file fungsi php anda untuk melakukan suatu proses seperti CRUD
 # Tutorial
 ### Membuat tampilan home, dll
-untuk membuat tampilan silahkan masukan ke folder views
+untuk membuat tampilan silahkan menuliskan file ```.php``` ke folder views
 ```
 |
 ├─ views
 ```
-dengan cara membuat tampilan seperti biasa dengan html, berikut templatenya
+dengan cara membuat tampilan seperti biasa dengan html pada file ```.php```, berikut templatenya
 
 ```php
 <!DOCTYPE html> 
