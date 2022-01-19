@@ -1,14 +1,15 @@
 <?php
-
-// lokasi file views
 class Config {
-  // Properties
-  public $locviews = "views/";
+  // Silahkan disesuaikan dengan configurasi server anda
   public $dbhost = 'localhost';
-  public $dbuser = 'root';
-  public $dbpass = '';
-  public $dbname = 'example';
-
+  public $dbuser = 'Username Database Anda';
+  public $dbpass = 'Password Database ANda';
+  public $dbname = 'Nama Database Anda';
+  public $locviews = "views/";
+  public $locprocess = "process/";
+  public $locerrlogin ='/login';
+  public $locsukseslogin = '/';
+  
   function get_views() {
     return $this->locviews;
   }
@@ -19,10 +20,20 @@ class Config {
     return $this->dbuser;
   }
   function get_dbpass() {
-    return $this->dbpasst;
+    return $this->dbpass;
   }
   function get_dbname() {
     return $this->dbname;
+  }
+  function get_locerrlogin() {
+    return $this->locerrlogin;
+  }
+
+  function get_process() {
+    return $this->locprocess;
+  }
+  function get_locsukseslogin() {
+    return $this->locsukseslogin;
   }
 }
 
@@ -33,10 +44,29 @@ class db {
 	protected $query;
     protected $show_errors = TRUE;
     protected $query_closed = TRUE;
+    public $dbco;
 	public $query_count = 0;
-
-	public function __construct($dbhost = 'localhost', $dbuser = 'root', $dbpass = '', $dbname = '', $charset = 'utf8') {
-		$this->connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+    
+	public function getDBhost() {
+	    $this->dbco = new Config();
+        return $this->dbco->get_dbhost();
+    }
+    public function getDBuser() {
+	    $this->dbco = new Config();
+        return $this->dbco->get_dbuser();
+    }
+    public function getDBpass() {
+	    $this->dbco = new Config();
+        return $this->dbco->get_dbpass();
+    }
+    public function getDBname() {
+	    $this->dbco = new Config();
+        return $this->dbco->get_dbname();
+    }
+    
+	public function __construct($dbhost = "localhost", $dbuser = "root", $dbpass = "", $dbname = "example", $charset = 'utf8') {
+	    
+		$this->connection = new mysqli($this->getDBhost(), $this->getDBuser(), $this->getDBpass(), $this->getDBname());
 		if ($this->connection->connect_error) {
 			$this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
 		}
@@ -68,9 +98,9 @@ class db {
                 call_user_func_array(array($this->query, 'bind_param'), $args_ref);
             }
             $this->query->execute();
-           	if ($this->query->errno) {
+          	if ($this->query->errno) {
 				$this->error('Unable to process MySQL query (check your params) - ' . $this->query->error);
-           	}
+          	}
             $this->query_closed = FALSE;
 			$this->query_count++;
         } else {

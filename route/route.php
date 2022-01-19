@@ -4,17 +4,30 @@ $conf = new Config();
 $route = new Route();
 
 // Views Loc
-$dir = $conf->get_views();
+$dirv = $conf->get_views();
 
-// Login Loc
-$loginloc = $dir."home.php";
+// Process Loc
+$dirp = $conf->get_process();
 
 
 
-$route->add('/',$dir."home.php");
+// Mulai Tambahakan Route anda dari sini
 
-$route->add("/user/{id}/{di}",$dir."user.php");
 
-$route->add('/login',$loginloc);
+$route->add('/',$dirv."home.php");
 
-$route->notFound($dir."404.php");
+$route->add("/user",$dirv."user.php");
+
+
+// Aktifkan route dibawah jika ingin menggunakan fitur login
+
+// $route->add('/login',$dirv.'pgLogin.php');
+
+// $route->add('/logout',$dirv.'pgLogout.php');
+
+// $route->add('/auth/{aksi}',$dirp."prosesAuth.php");
+
+
+// Route Error
+
+$route->notFound($dirv."404.php");

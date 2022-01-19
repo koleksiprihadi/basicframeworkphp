@@ -1,3 +1,4 @@
+
 ```
 
 ╭━━╮╱╱╱╱╱╱╱╱╱╱╱╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╭╮
@@ -9,6 +10,14 @@
 ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱┃┃
 ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯╱╱╱╱╰╯
 ```
+# Fitur
+- [x] Route
+- [x] Koneksi Mysql
+- [x] Fungsi Login dan Session
+- [ ] Enkripsi Password (md5)
+
+
+
 # Penggunaan
 1. silahkan clone project ini ke folder htdocs
 2. buat file .htaccess dan pastekan kode dibawah ini
@@ -26,7 +35,7 @@ RewriteRule ^(.+)$ index.php?uri=$1 [QSA,L]
 
 # struktur direktori
 ```
-htdocs           
+htdocs          
 ├─ app                      
 │  ├─ config.php            
 │  ├─ globalconfig.php      
@@ -47,17 +56,24 @@ htdocs
 │  │  ├─ index.php          
 │  │  └─ myscripts.js       
 │  └─ index.php             
+├─ process                  
+│  ├─ index.php             
+│  └─ prosesAuth.php        
 ├─ route                    
+│  ├─ index.php             
 │  └─ route.php             
 ├─ views                    
 │  ├─ 404.php               
 │  ├─ home.php              
 │  ├─ index.php             
+│  ├─ pgLogin.php           
+│  ├─ pgLogout.php          
 │  └─ user.php              
-├─ README.md                
+├─ .htaccess               
 └─ index.php                
-
 ```
+Folder **views** untuk semua file tampilan anda dalam bentuk .php
+Folder **process** untuk semua file fungsi php anda untuk melakukan suatu proses seperti CRUD
 # Tutorial
 ### Membuat tampilan home, dll
 untuk membuat tampilan silahkan masukan ke folder views
@@ -111,11 +127,19 @@ Setelah selesai membuat tampilan silahkan buat route pada file route.php yang te
 berikut syntax pembuatan route
 
 ```php
-$route->add('/',$dir."home.php");
+$route->add('/',$dirv."tampilananda.php");
 ```
 atau
 ```php
-$route->add('/',"views/home.php");
+$route->add('/',"views/tampilananda.php");
+```
+untuk membuat route untuk proses atau file didalam folder process syntaxnya seperti berikut
+```php
+$route->add('/',$dirp."prosesanda.php");
+```
+atau
+```php
+$route->add('/',"process/prosesanda.php");
 ```
 
 ### Penggunaan MySQL
@@ -129,15 +153,12 @@ htdocs
 edit lah pada bagian seperti dibawah ini
 ```php
 <?php
-
-// lokasi file views
 class Config {
-  // Properties
-  ...
+  // Silahkan disesuaikan dengan configurasi server anda
   public $dbhost = 'localhost';
-  public $dbuser = 'root';
-  public $dbpass = '';
-  public $dbname = 'example';
+  public $dbuser = 'Username Database Anda';
+  public $dbpass = 'Password Database ANda';
+  public $dbname = 'Nama Database Anda';
   ...
 ```
 setelah itu anda harus mengedit file globalconfig.php untuk memanggil fungsi db di setiap page yang anda buat
@@ -203,5 +224,92 @@ echo $db->lastInsertID();
 $db->close();
 ```
 
+### Menggunakan Fitur Login
+Basic Framework Php ini telah menyediakan skema login dan session, untuk menggunakannya anda harus
 
+#### 1. aktifkan route /login, /logout dan /auth
+pertama masuklah ke file route.php pada folder route
+```
+├─ route                    
+│  ├─ index.php             
+│  └─ route.php 
+```
+hilangkan tanda comment pada kode route berikut
+```php
+// Aktifkan route dibawah jika ingin menggunakan fitur login
+
+// $route->add('/login',$dirv.'pgLogin.php');
+
+// $route->add('/logout',$dirv.'pgLogout.php');
+
+// $route->add('/auth/{aksi}',$dirp."prosesAuth.php");
+
+```
+menjadi 
+```php
+// Aktifkan route dibawah jika ingin menggunakan fitur login
+
+$route->add('/login',$dirv.'pgLogin.php');
+
+$route->add('/logout',$dirv.'pgLogout.php');
+
+$route->add('/auth/{aksi}',$dirp."prosesAuth.php");
+```
+#### 2. Atur database MySQL anda
+1. buatlah table akun pada mysql anda seperti ini
+
+| Nama | Jenis | Ekstra |
+|------|-------|--------|
+|id|int(11) | AUTO_INCREMENT|
+|Auser| Varchar(255)||
+|Apass| Varchar(255)||
+
+
+
+2. configurasi Database anda pada direktori ```app/config.php```
+
+```
+htdocs           
+├─ app                      
+│  ├─ config.php
+```
+edit lah pada bagian seperti dibawah ini
+```php
+<?php
+
+// lokasi file views
+class Config {
+  // Silahkan disesuaikan dengan configurasi server anda
+  public $dbhost = 'localhost';
+  public $dbuser = 'Username Database Anda';
+  public $dbpass = 'Password Database ANda';
+  public $dbname = 'Nama Database Anda';
+  ...
+```
+
+4. tambahkan code ```<?php sessioncek()?>``` disetiap page anda pada awal dokumen yang memerlukan authentikasi login seperti dibawah ini
+```php
+1 <?php sessioncek();?>
+2 <!DOCTYPE html>
+3 <html lang="en">
+4 <head>
+5     <meta charset="UTF-8">
+6     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+7     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+8     <title>Document</title>
+9     <?php include 'app/link-css.php';?>
+10 </head>
+11 <body>
+12     <!-- Code Html anda disini -->
+13     <?php include 'app/link-javascripts.php';?>
+14 </body>
+15 </html>
+```
+5. aturlah route kesuatu halaman jika login berhasil
+untuk mengaturnya silahkan edit pada file ```app/config.php``` editlah value dari ```$locsukseslogin```
+```php
+...
+public $locsukseslogin = '/';
+...
+```
 

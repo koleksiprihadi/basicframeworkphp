@@ -7,7 +7,8 @@
       <?php include 'app/link-css.php';?>
    </head> 
   
-   <body> 
+   <body>
+       <h1>home</h1> 
       <?php include 'app/link-javascripts.php';?>
    </body> 
 </html> 

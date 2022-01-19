@@ -1,2 +1,8 @@
-<h1><?php echo $params['id']; ?></h1> <br>
-<h1><?php echo $params['di']; ?></h1>
+<?php
+// $id = $params['id'];
+sessioncek();
+$accounts = $db->query('SELECT * FROM akun')->fetchAll();
+
+foreach ($accounts as $account) {
+	echo $account['Auser'] . '<br>';
+}
