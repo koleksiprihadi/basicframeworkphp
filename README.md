@@ -124,7 +124,7 @@ Setelah selesai membuat tampilan silahkan buat route pada file route.php yang te
 ├─ route                    
 │  └─ route.php
 ```
-berikut syntax pembuatan route
+berikut syntax pembuatan route view atau file didalam folder views syntaxnya seperti berikut
 
 ```php
 $route->addView('/tampilananda',"tampilananda.php");
