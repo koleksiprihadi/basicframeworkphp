@@ -38,19 +38,19 @@ class db {
     public $dbco;
 	public $query_count = 0;
     
-	public function getDBhost() {
+	private function getDBhost() {
 	    $this->dbco = new Config();
         return $this->dbco->get_dbhost();
     }
-    public function getDBuser() {
+    private function getDBuser() {
 	    $this->dbco = new Config();
         return $this->dbco->get_dbuser();
     }
-    public function getDBpass() {
+    private function getDBpass() {
 	    $this->dbco = new Config();
         return $this->dbco->get_dbpass();
     }
-    public function getDBname() {
+    private function getDBname() {
 	    $this->dbco = new Config();
         return $this->dbco->get_dbname();
     }
