@@ -15,6 +15,7 @@
 - [x] Koneksi Mysql
 - [x] Fungsi Login dan Session
 - [ ] Enkripsi Password (md5)
+- [ ] Input Captcha
 
 [Saran & Pertanyaan](mailto:koleksiprihadi@gmail.com)
 
