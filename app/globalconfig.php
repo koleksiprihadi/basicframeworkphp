@@ -22,7 +22,7 @@ function auth($authUser, $authPass){
     $user = $authUser;
     $akun = $db->query("SELECT * FROM akun WHERE Auser = '$user'")->fetchArray();
 
-    if($akun['Auser'] != Null){
+    if(count($akun) > 0){
         if($akun['Auser'] == $authUser && $akun['Apass']==$authPass){
             $_SESSION["id_auth"] = $akun['id'];
             echo "<script type='text/javascript'>
