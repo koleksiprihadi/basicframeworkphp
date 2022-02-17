@@ -113,7 +113,7 @@ class Route {
     
 
     function notFound($file){
-        include($file);
+        include('views/'.$file);
         exit();
     }
 }

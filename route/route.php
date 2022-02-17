@@ -22,4 +22,4 @@ $route->addView("/user","user.php");
 
 // Route Error
 
-$route->notFound($dirv."404.php");
+$route->notFound("404.php");
