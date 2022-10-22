@@ -40,42 +40,53 @@ RewriteRule ^(.+)$ index.php?uri=$1 [QSA,L]
 
 # struktur direktori
 ```
-htdocs          
-├─ app                      
-│  ├─ config.php            
-│  ├─ globalconfig.php      
-│  ├─ index.php             
-│  ├─ link-css.php          
-│  ├─ link-javascripts.php  
-│  └─ route-config.php      
-├─ assets                   
-│  ├─ css                   
-│  │  ├─ index.php          
-│  │  └─ styles.css         
-│  ├─ icon                  
-│  │  ├─ favicon.ico        
-│  │  └─ index.php          
-│  ├─ img                   
-│  │  └─ index.php          
-│  ├─ js                    
-│  │  ├─ index.php          
-│  │  └─ myscripts.js       
-│  └─ index.php             
-├─ process                  
-│  ├─ index.php             
-│  └─ prosesAuth.php        
-├─ route                    
-│  ├─ index.php             
-│  └─ route.php             
-├─ views                    
-│  ├─ 404.php               
-│  ├─ home.php              
-│  ├─ index.php             
-│  ├─ pgLogin.php           
-│  ├─ pgLogout.php          
-│  └─ user.php              
-├─ .htaccess               
-└─ index.php                
+ 📂basicframeworkphp
+ ┣ 📂API
+ ┃ ┣ 📂mid
+ ┃ ┃ ┣ 📜getData.php
+ ┃ ┃ ┣ 📜getDataNoAuth.php
+ ┃ ┃ ┣ 📜index.php
+ ┃ ┃ ┣ 📜login.php
+ ┃ ┃ ┗ 📜regis.php
+ ┃ ┗ 📜index.php
+ ┣ 📂app
+ ┃ ┣ 📜API-config.php
+ ┃ ┣ 📜config.php
+ ┃ ┣ 📜globalconfig.php
+ ┃ ┣ 📜index.php
+ ┃ ┣ 📜link-css.php
+ ┃ ┣ 📜link-javascripts.php
+ ┃ ┗ 📜route-config.php
+ ┣ 📂assets
+ ┃ ┣ 📂css
+ ┃ ┃ ┣ 📜index.php
+ ┃ ┃ ┗ 📜styles.css
+ ┃ ┣ 📂icon
+ ┃ ┃ ┣ 📜favicon.ico
+ ┃ ┃ ┗ 📜index.php
+ ┃ ┣ 📂img
+ ┃ ┃ ┗ 📜index.php
+ ┃ ┣ 📂js
+ ┃ ┃ ┣ 📜index.php
+ ┃ ┃ ┗ 📜myscripts.js
+ ┃ ┗ 📜index.php
+ ┣ 📂process
+ ┃ ┣ 📜index.php
+ ┃ ┗ 📜prosesAuth.php
+ ┣ 📂route
+ ┃ ┣ 📜index.php
+ ┃ ┗ 📜route.php
+ ┣ 📂views
+ ┃ ┣ 📜404.php
+ ┃ ┣ 📜home.php
+ ┃ ┣ 📜index.php
+ ┃ ┣ 📜pgLogin.php
+ ┃ ┣ 📜pgLogout.php
+ ┃ ┗ 📜user.php
+ ┣ 📜.htaccess
+ ┣ 📜README.md
+ ┗ 📜index.php
+                
 ```
 Folder **views** untuk semua file tampilan anda dalam bentuk .php
 Folder **process** untuk semua file fungsi php anda untuk melakukan suatu proses seperti CRUD
