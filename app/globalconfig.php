@@ -46,4 +46,9 @@ function errLogin($loc) {
   </script>";
 }
 
+function initAPI(){
+  require_once('./vendor/autoload.php');
+  require_once('./app/API-config.php');
+}
+
 

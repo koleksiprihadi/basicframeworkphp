@@ -1,7 +1,7 @@
 <?php
 class Route {
 
-    private function simpleRoute($file, $route){
+    private function simpleRoute($file, $route,$title){
         if(!empty($_REQUEST['uri'])){
             $route = preg_replace("/(^\/)|(\/$)/","",$route);
             $reqUri =  preg_replace("/(^\/)|(\/$)/","",$_REQUEST['uri']);
@@ -19,7 +19,7 @@ class Route {
 
     }
 
-    private function addRoute($route,$file){
+    private function addRoute($route,$file,$title){
         //will store all the parameters value in this array
         $params = [];
 
@@ -31,7 +31,7 @@ class Route {
 
         //if the route does not contain any param call simpleRoute();
         if(empty($paramMatches[0])){
-            $this->simpleRoute($file,$route);
+            $this->simpleRoute($file,$route,$title);
             return;
         }
 
@@ -101,18 +101,22 @@ class Route {
         }
     }
 
-    function addView($route, $file){
+    function addView($route, $file, $title){
         $file = 'views/'. $file;
-        $this-> addRoute($route,$file);
+        $this-> addRoute($route,$file, $title);
     }
-    function addProcess($route, $file){
+    function addProcess($route, $file, $title){
         $file = 'process/'. $file;
-        $this-> addRoute($route,$file);
+        $this-> addRoute($route,$file, $title);
+    }
+    function addApi($route, $file, $method = "POST"){
+        $file = 'API/mid/'. $file;
+        $this-> addRoute($route,$file, $method);
     }
 
     
 
-    function notFound($file){
+    function notFound($file, $title){
         include('views/'.$file);
         exit();
     }

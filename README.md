@@ -14,7 +14,8 @@
 - [x] Route
 - [x] Koneksi Mysql
 - [x] Fungsi Login dan Session
-- [ ] Enkripsi Password (md5)
+- [x] API
+- [x] JWT
 - [ ] CKEditor 5
 - [ ] Input Captcha
 
@@ -326,3 +327,7 @@ public $locsukseslogin = '/';
 ...
 ```
 
+## API
+Pada basicframeworkphp ini disediakan fitur API dengan sistem autentikasi menggunakan Jason Web Token (JWT)
+
+[tutorial menyusul]
